@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class jdbcConnectionService {
     public Connection openConnection() throws SQLException {
-        return DriverManager.getConnection(
+        return (DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/trello",
-                "postgres", "1234");
+                "postgres", "1234"));
     }
 }
