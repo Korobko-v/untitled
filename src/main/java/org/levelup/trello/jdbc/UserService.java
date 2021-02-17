@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class UserService {
 
     public void printUsers() {
-        jdbcConnectionService connectionService = new jdbcConnectionService();
+        JdbcConnectionService connectionService = new JdbcConnectionService();
         try (Connection connection = connectionService.openConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from users");
