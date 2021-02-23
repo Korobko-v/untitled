@@ -16,11 +16,10 @@ public class UserService {
                Integer id = rs.getInt(1);
                String login = rs.getString(2);
                String email = rs.getString(3);
-               String password = rs.getString(4);
-               String name = rs.getString(5);
+               String name = rs.getString(4);
 
                 System.out.println(String.join("|", id.toString(), login,
-                        email, password, name));
+                        email,name));
             }
         }
         catch (SQLException exc) {
