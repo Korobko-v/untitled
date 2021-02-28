@@ -14,7 +14,7 @@ public class Filter {
         Reflections reflections = new Reflections(pack);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(ReflectionClass.class);
         for (Class c : classes) {
-            Class<?> newClass = c.forName(c.getName());
+            Class<?> newClass = Class.forName(c.getName());
             System.out.println(newClass.getDeclaredConstructor().newInstance().toString());
         }
         }
