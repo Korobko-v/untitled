@@ -1,15 +1,16 @@
 package org.levelup.trello.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+//@Getter
+//@Setter
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 public class User {
     private Integer id;
     private String name;
     private String login;
     private String email;
-
 
 }

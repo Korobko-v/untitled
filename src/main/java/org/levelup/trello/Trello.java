@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class Trello {
     static String userLogin = "";
-    static  int userId = 0;
+    static int userId = 0;
 
     public void start() throws IOException, SQLException {
         System.out.println("1: Регистрация");
