@@ -10,7 +10,7 @@ import java.util.Set;
 public class Filter {
     @SneakyThrows
     public void filterClasses (String line) {
-        String pack = "org.levelup.reflection." + line;
+        String pack = "org.levelup." + line;
         Reflections reflections = new Reflections(pack);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(ReflectionClass.class);
         for (Class c : classes) {
