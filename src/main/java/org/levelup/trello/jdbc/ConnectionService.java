@@ -8,4 +8,7 @@ import java.sql.SQLException;
 public interface ConnectionService {
     @Profiling
     Connection openConnection() throws SQLException;
+
+    @Profiling
+    void closeConnection() throws SQLException;
 }

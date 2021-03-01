@@ -16,7 +16,6 @@ public class RandomIntegerAnnotationProcessor {
         //Создадим объект
         Constructor<Person> defaultConstructor = personClass.getDeclaredConstructor();
         Person object = defaultConstructor.newInstance();
-
         Field[] allFields = personClass.getDeclaredFields();
         for (Field field : allFields) {
             RandomInteger annotation = field.getAnnotation(RandomInteger.class);

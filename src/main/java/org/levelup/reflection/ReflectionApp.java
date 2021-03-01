@@ -29,5 +29,6 @@ public class ReflectionApp {
         loginField.set(user, "newtestlogin");
         String newLogin = (String) loginField.get(user);
         System.out.println("Login value: " + newLogin);
+
     }
 }

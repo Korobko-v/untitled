@@ -42,4 +42,10 @@ public class JdbcConnectionService implements ConnectionService {
                 "jdbc:postgresql://localhost:5432/trello",
                 "postgres", "1234");
     }
+
+    @Override
+    @Profiling
+    public void closeConnection() throws SQLException {
+        DriverManager.getConnection("jdbc:postgresql://localhost:5432/trello").close();
+    }
 }

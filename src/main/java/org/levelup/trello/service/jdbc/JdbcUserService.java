@@ -1,5 +1,6 @@
 package org.levelup.trello.service.jdbc;
 
+import lombok.SneakyThrows;
 import org.levelup.trello.jdbc.ConnectionService;
 import org.levelup.trello.jdbc.JdbcConnectionService;
 import org.levelup.trello.model.User;
@@ -14,10 +15,11 @@ public class JdbcUserService implements UserService {
         this.jdbcConnectionService = JdbcConnectionService.buildJdbcConnectionService();
     }
 
+    @SneakyThrows
     @Override
     public User createUser(String login, String email, String name, String password) {
+        long start = System.nanoTime();
         try (Connection connection = jdbcConnectionService.openConnection()) {
-
             String sql = "insert into users (login, name, email)" +
                     "values(?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

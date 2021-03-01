@@ -15,7 +15,8 @@ public class OpenConnectionServiceInvocationHandler implements InvocationHandler
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if (method.isAnnotationPresent(Profiling.class)) {
+//        if (method.isAnnotationPresent(Profiling.class)) {
+        if (method.getName().equals("openConnection")) {
             long start = System.nanoTime();
 
             Object result = method.invoke(jdbcConnectionService, args);
@@ -26,6 +27,6 @@ public class OpenConnectionServiceInvocationHandler implements InvocationHandler
             return result;
         }
 
-        return method.invoke(jdbcConnectionService, args);
+        return method.invoke(jdbcConnectionService, args); // jdbcConnectionService.method(args)
     }
 }
