@@ -5,23 +5,17 @@ import org.levelup.trello.jdbc.JdbcConnectionService;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.sql.Connection;
 
 @RequiredArgsConstructor
 public class CloseConnectionInvocationHandler implements InvocationHandler {
-    private final JdbcConnectionService jdbcConnectionService;
+    private final Connection connection;
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        if (method.getName().equals("closeConnection")) {
-            long start = System.nanoTime();
-
-            Object result = method.invoke(jdbcConnectionService, args);
-
-           long end = System.nanoTime();
-            System.out.println("Time to close connection: " + (end - start) + "ns");
-
-            return result;
+        if (method.getName().equals("close")) {
+            ConnectionAliveTimeService.getInstance().printConnectionAliveTime(connection);
         }
-        return method.invoke(jdbcConnectionService, args);
+        return method.invoke(connection, args);
     }
 }

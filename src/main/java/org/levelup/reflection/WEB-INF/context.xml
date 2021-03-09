@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name ="jdbc/myPool"
+    auth ="Container"
+    type ="javax.sql.DataSource"
+    username ="postgres"
+    password ="1234"
+    driverClassName ="org.postgresql.Driver"
+    url ="jdbc:postgresql://localhost:5432/trello"
+    validationQuery ="select *"
+    maxActive ="4"
+    maxIdle ="4"
+    />
+</Context>
