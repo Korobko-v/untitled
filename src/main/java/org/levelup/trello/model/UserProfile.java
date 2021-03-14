@@ -3,23 +3,22 @@ package org.levelup.trello.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
-//@Setter
 @Entity
-@Table(name = "users")
+@Table(name = "user_profile")
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
-    @Id // primary key из таблицы users
+public class UserProfile {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "name")
+    @Column(name = "user_id")
+    private Integer userId;
     private String name;
-    private String login;
-    private String email;
-
+    @Column(name = "last_name")
+    private String lastName;
+    private Date birthDate;
 }

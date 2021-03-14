@@ -4,14 +4,15 @@ import lombok.SneakyThrows;
 import org.levelup.trello.jdbc.ConnectionService;
 import org.levelup.trello.jdbc.JdbcConnectionService;
 import org.levelup.trello.model.User;
-import org.levelup.trello.service.UserService;
+import org.levelup.trello.service.UserRepository;
 
 import java.sql.*;
+import java.util.List;
 
-public class JdbcUserService implements UserService {
+public class JdbcUserRepository implements UserRepository {
     private final ConnectionService jdbcConnectionService;
 
-    public JdbcUserService() {
+    public JdbcUserRepository() {
         this.jdbcConnectionService = JdbcConnectionService.buildJdbcConnectionService();
     }
 
@@ -42,6 +43,26 @@ public class JdbcUserService implements UserService {
             System.out.println("Ошибка при работе с базой " + exc.getMessage());
             throw new RuntimeException(exc);
         }
+    }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersByIds(List<Integer> userIds) {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return null;
     }
 
     private void saveUserCredentials(Connection connection, Integer userId, String password) throws SQLException {

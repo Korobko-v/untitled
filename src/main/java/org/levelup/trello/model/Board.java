@@ -5,21 +5,19 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
-//@Setter
 @Entity
-@Table(name = "users")
+@Table(name = "boards")
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
-    @Id // primary key из таблицы users
+public class Board {
+    @Id
+    @Column(name = "board_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "name")
+    private Integer boardId;
     private String name;
-    private String login;
-    private String email;
-
+    private boolean favourite;
+    @Column(name = "owner_id")
+    private int ownerId;
 }

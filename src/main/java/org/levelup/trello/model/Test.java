@@ -5,21 +5,16 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
-//@Setter
 @Entity
-@Table(name = "users")
+@Table(name = "team")
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
-    @Id // primary key из таблицы users
+public class Test {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name")
     private String name;
-    private String login;
-    private String email;
-
+    private Integer number;
 }

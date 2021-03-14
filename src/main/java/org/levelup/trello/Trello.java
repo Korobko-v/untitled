@@ -1,8 +1,8 @@
 package org.levelup.trello;
 
 import org.levelup.trello.jdbc.JdbcConnectionService;
-import org.levelup.trello.service.UserService;
-import org.levelup.trello.service.jdbc.JdbcUserService;
+import org.levelup.trello.service.UserRepository;
+import org.levelup.trello.service.jdbc.JdbcUserRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,8 +46,8 @@ public class Trello {
             String password = reader.readLine();
 
 
-            UserService userService = new JdbcUserService();
-            userService.createUser(login, email, name, password);
+            UserRepository userRepository = new JdbcUserRepository();
+            userRepository.createUser(login, email, name, password);
             userLogin = login;
 
             String sqlLogin = "select * from users where login = '" + login + "'";
