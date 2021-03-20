@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.levelup.trello.model.User;
+import org.levelup.trello.model.UserCredentials;
 import org.levelup.trello.service.UserRepository;
 
 import java.util.List;
@@ -18,7 +19,11 @@ public class HibernateUserRepository implements UserRepository {
     public User createUser(String login, String email, String name, String password) {
         try (Session session = factory.openSession()) { //открываем новое соединение к базе
             Transaction tx = session.beginTransaction();
-            User user = new User(null, name, login, email);
+            User user = new User( name, login, email);
+            UserCredentials userCredentials = new UserCredentials();
+            userCredentials.setPassword(password);
+            userCredentials.setUser(user);
+            user.setCredentials(userCredentials);
             session.persist(user); //добавление пользователя в таблицу users -> insert into users
 
             tx.commit();
@@ -29,7 +34,7 @@ public class HibernateUserRepository implements UserRepository {
     @Override
     public User findUserByLogin(String login) {
         try (Session session = factory.openSession()) {
-            List<User> users = session.createQuery("from user where login = :login", User.class)
+            List<User> users = session.createQuery("from User where login = :login", User.class)
                     .setParameter("login", login)
                     .getResultList();
             return  users.isEmpty() ? null: users.get(0);

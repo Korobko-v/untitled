@@ -1,22 +1,13 @@
 package org.levelup.trello;
 
-import lombok.SneakyThrows;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.levelup.trello.hibernate.HibernateUtils;
-import org.levelup.trello.model.Board;
 import org.levelup.trello.model.Student;
-import org.levelup.trello.model.User;
-import org.levelup.trello.service.UserRepository;
-import org.levelup.trello.service.hibernate.HibernateBoardsRepository;
 import org.levelup.trello.service.hibernate.HibernateStudentRepository;
-import org.levelup.trello.service.hibernate.HibernateUserRepository;
-import org.levelup.trello.service.jdbc.JdbcUserRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 public class TrelloApplication {
     public static void main(String[] args) throws IOException {
