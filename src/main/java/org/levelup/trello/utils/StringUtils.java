@@ -13,4 +13,8 @@ public class StringUtils {
         return new StringBuilder(original).reverse().toString();
     }
 
+    public static String concat (String s1, String s2) {
+        return s1+s2;
+    }
+
 }

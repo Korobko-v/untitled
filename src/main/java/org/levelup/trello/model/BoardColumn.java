@@ -17,7 +17,6 @@ public class BoardColumn {
     private String name;
     @Column(name = "column_order")
     private Integer order;
-
-//    @Column(name = "board_id")
+//   @Column(name = "board_id")
 //    private Integer boardId;
 }

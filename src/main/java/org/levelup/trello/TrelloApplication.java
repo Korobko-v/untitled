@@ -2,7 +2,11 @@ package org.levelup.trello;
 
 import org.hibernate.SessionFactory;
 import org.levelup.trello.hibernate.HibernateUtils;
+import org.levelup.trello.model.Board;
+import org.levelup.trello.model.BoardColumn;
 import org.levelup.trello.model.Student;
+import org.levelup.trello.service.hibernate.HibernateBoardColumnRepository;
+import org.levelup.trello.service.hibernate.HibernateBoardRepository;
 import org.levelup.trello.service.hibernate.HibernateStudentRepository;
 
 import java.io.BufferedReader;
@@ -62,16 +66,39 @@ public class TrelloApplication {
 //        System.out.println("Доска добавлена в таблицу");
 
 
-        System.out.println("Введите имя");
-        String stName = reader.readLine();
+//        System.out.println("Введите имя");
+//        String stName = reader.readLine();
+//
+//        System.out.println("Введите рейтинг");
+//        Integer rating = Integer.parseInt(reader.readLine());
+//
+//        HibernateStudentRepository studentRepository = new HibernateStudentRepository(factory);
+//        Student student = studentRepository.createStudent(stName, rating);
+//        System.out.println("Студент добавлен");
 
-        System.out.println("Введите рейтинг");
-        Integer rating = Integer.parseInt(reader.readLine());
+        HibernateBoardRepository boardRepository = new HibernateBoardRepository(factory);
+//        Board board = boardRepository.updateBoard(5, "rootBoard", true, 2);
+//        System.out.println("Доска изменена");
+//
+//        System.out.println("Введите id удаляемой доски");
+//        String s = reader.readLine();
+//        Board del = boardRepository.deleteBoard(Integer.parseInt(s));
+//        System.out.println("Доска " + s + " удалена");
 
-        HibernateStudentRepository studentRepository = new HibernateStudentRepository(factory);
-        Student student = studentRepository.createStudent(stName, rating);
-        System.out.println("Студент добавлен");
 
+//        HibernateBoardColumnRepository columnRepository = new HibernateBoardColumnRepository(factory);
+//        BoardColumn boardColumn = columnRepository.updateColumn(1, "oneCol", 1);
+//        System.out.println("Колонка изменена.");
+
+//        Board board = boardRepository.createBoard(2, "name6", true);
+//        System.out.println("Доска создана");
+//        System.out.println(board.getOwner().getId());
+
+
+//        System.out.println("Введите id удаляемой колонки: ");
+//        String s = reader.readLine();
+//        BoardColumn column = columnRepository.deleteColumn(Integer.parseInt(s));
+//        System.out.println("Колонка " + s + " удалена.");
         factory.close();
     }
 }

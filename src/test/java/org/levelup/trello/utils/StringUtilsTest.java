@@ -31,4 +31,13 @@ public class StringUtilsTest {
         Assertions.assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testConcat() {
+        String s1 = "a";
+        String s2 = "b";
+        String expected = "ab";
+        String result = StringUtils.concat(s1, s2);
+        Assertions.assertEquals(expected, result);
+    }
+
 }

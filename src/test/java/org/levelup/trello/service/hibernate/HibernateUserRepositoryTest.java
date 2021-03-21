@@ -71,6 +71,14 @@ class HibernateUserRepositoryTest {
     }
     @Test
     public void testFindUserByLogin_whenUserDoesNotExist_thenReturnNull() {
+        String login = "thisUserNeverExisted";
+//        Query query = Mockito.mock(Query.class);
+//        Mockito.when(session.createQuery("from User where login = :login", User.class))
+//                .thenReturn(query);
+//        Mockito.when(query.setParameter(ArgumentMatchers.anyString(), ArgumentMatchers.eq(login)))
+//                .thenReturn(query);
 
+        User result = userRepository.findUserByLogin(login);
+        Assertions.assertNull(result);
     }
 }
