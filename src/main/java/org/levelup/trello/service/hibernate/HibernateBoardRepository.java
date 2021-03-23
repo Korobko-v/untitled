@@ -5,13 +5,11 @@ import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.levelup.trello.model.Board;
 import org.levelup.trello.model.BoardColumn;
 import org.levelup.trello.model.User;
 import org.levelup.trello.service.BoardRepository;
-import org.mockito.Mockito;
-
-import javax.management.Query;
 
 public class HibernateBoardRepository extends AbstractHibernateRepository implements BoardRepository {
 
@@ -51,11 +49,20 @@ public class HibernateBoardRepository extends AbstractHibernateRepository implem
             return board;
         });
     }
+    public Board getBoardById(Integer boardId) {
+        try (Session session = factory.openSession()) {
+            return session.get(Board.class, boardId);
+        }
+    }
 
     public Board deleteBoard(Integer boardId) {
         return runWithTransaction(session -> {
             Board board = session.load(Board.class, boardId);
-            session.delete(board);
+            //session.delete(board);
+            session.createQuery("delete from Board where board_id = :boardId")
+                    .setParameter("boardId", boardId)
+                    .executeUpdate();
+            System.out.println("Доска " + boardId + " удалена.");
             return board;
         });
     }

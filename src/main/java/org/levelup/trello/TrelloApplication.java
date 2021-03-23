@@ -77,6 +77,7 @@ public class TrelloApplication {
 //        System.out.println("Студент добавлен");
 
         HibernateBoardRepository boardRepository = new HibernateBoardRepository(factory);
+        boardRepository.deleteBoard(15);
 //        Board board = boardRepository.updateBoard(5, "rootBoard", true, 2);
 //        System.out.println("Доска изменена");
 //
