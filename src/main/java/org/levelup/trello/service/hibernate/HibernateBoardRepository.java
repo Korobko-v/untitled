@@ -11,6 +11,9 @@ import org.levelup.trello.model.BoardColumn;
 import org.levelup.trello.model.User;
 import org.levelup.trello.service.BoardRepository;
 
+import javax.persistence.Column;
+import java.util.Collection;
+
 public class HibernateBoardRepository extends AbstractHibernateRepository implements BoardRepository {
 
     public HibernateBoardRepository (SessionFactory factory) {
@@ -29,22 +32,13 @@ public class HibernateBoardRepository extends AbstractHibernateRepository implem
         });
     }
 
-    public Board addColumn(Integer boardId, String name, int columnOrder) {
-        return runWithTransaction(session -> {
-            BoardColumn column = new BoardColumn();
-            column.setOrder(columnOrder);
-            Board board = session.get(Board.class, boardId);
-            board.getColumns().add(column);
 
-            return board;
-        });
-    }
     public Board updateBoard(Integer boardId, String name, boolean favourite, Integer ownerId) {
         return runWithTransaction(session -> {
             Board board = session.load(Board.class, boardId);
             board.setName(name);
             board.setFavourite(favourite);
-            board.setOwner(session.load(User.class, ownerId));
+            board.setOwner(session.get(User.class, ownerId));
             session.update(board);
             return board;
         });
@@ -58,10 +52,7 @@ public class HibernateBoardRepository extends AbstractHibernateRepository implem
     public Board deleteBoard(Integer boardId) {
         return runWithTransaction(session -> {
             Board board = session.load(Board.class, boardId);
-            //session.delete(board);
-            session.createQuery("delete from Board where board_id = :boardId")
-                    .setParameter("boardId", boardId)
-                    .executeUpdate();
+            session.delete(board);
             System.out.println("Доска " + boardId + " удалена.");
             return board;
         });

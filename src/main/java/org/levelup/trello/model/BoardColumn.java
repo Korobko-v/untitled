@@ -3,6 +3,7 @@ package org.levelup.trello.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 @Entity
@@ -17,6 +18,9 @@ public class BoardColumn {
     private String name;
     @Column(name = "column_order")
     private Integer order;
-//   @Column(name = "board_id")
-//    private Integer boardId;
+
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
+
 }

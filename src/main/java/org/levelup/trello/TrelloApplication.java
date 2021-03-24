@@ -76,8 +76,6 @@ public class TrelloApplication {
 //        Student student = studentRepository.createStudent(stName, rating);
 //        System.out.println("Студент добавлен");
 
-        HibernateBoardRepository boardRepository = new HibernateBoardRepository(factory);
-        boardRepository.deleteBoard(15);
 //        Board board = boardRepository.updateBoard(5, "rootBoard", true, 2);
 //        System.out.println("Доска изменена");
 //
@@ -100,6 +98,8 @@ public class TrelloApplication {
 //        String s = reader.readLine();
 //        BoardColumn column = columnRepository.deleteColumn(Integer.parseInt(s));
 //        System.out.println("Колонка " + s + " удалена.");
+        HibernateBoardColumnRepository columnRepository = new HibernateBoardColumnRepository(factory);
+        columnRepository.addColumn("hiberColumn", 2, 5);
         factory.close();
     }
 }
