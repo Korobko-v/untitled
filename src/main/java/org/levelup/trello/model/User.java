@@ -28,7 +28,7 @@ public class User {
     private String login;
     private String email;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Collection<Board> boards;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

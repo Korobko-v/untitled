@@ -13,6 +13,7 @@ import org.levelup.trello.service.BoardRepository;
 
 import javax.persistence.Column;
 import java.util.Collection;
+import java.util.List;
 
 public class HibernateBoardRepository extends AbstractHibernateRepository implements BoardRepository {
 
@@ -57,4 +58,15 @@ public class HibernateBoardRepository extends AbstractHibernateRepository implem
             return board;
         });
     }
+
+    @Override
+    public Board findBoardByName(String name) {
+        try (Session session = factory.openSession()) {
+            List<Board> boards = session.createQuery("from Board where name = :name", Board.class)
+                    .setParameter("name", name)
+                    .getResultList();
+            return  boards.isEmpty() ? null: boards.get(0);
+        }
+    }
+
 }

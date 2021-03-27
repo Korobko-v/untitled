@@ -98,8 +98,8 @@ public class TrelloApplication {
 //        String s = reader.readLine();
 //        BoardColumn column = columnRepository.deleteColumn(Integer.parseInt(s));
 //        System.out.println("Колонка " + s + " удалена.");
-        HibernateBoardColumnRepository columnRepository = new HibernateBoardColumnRepository(factory);
-        columnRepository.addColumn("hiberColumn", 2, 5);
+        HibernateBoardRepository boardRepository = new HibernateBoardRepository(factory);
+        boardRepository.createBoard("new223", false, 2);
         factory.close();
     }
 }

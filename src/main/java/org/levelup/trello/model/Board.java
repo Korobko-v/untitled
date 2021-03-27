@@ -21,7 +21,7 @@ public class Board {
     private String name;
     private boolean favourite;
 
-    @ManyToOne // by default, owner_id
+    @ManyToOne// by default, owner_id
     @JoinColumn(name = "owner_id") // здесь: связь с таблицей происходит по колонке owner_id
     public User owner;
 

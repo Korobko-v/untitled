@@ -1,19 +1,8 @@
 package org.levelup.threads.sync;
 
-public class Counter {
+public interface Counter {
 
-    private final Object mutex = new Object();
-    private int value;
+    void increment();
 
-    public void increment() {
-        synchronized (this) {
-            value++;
-        }
-    }
-
-    public int getValue() {
-        synchronized (mutex) {
-            return value;
-        }
-    }
+    int getValue();
 }

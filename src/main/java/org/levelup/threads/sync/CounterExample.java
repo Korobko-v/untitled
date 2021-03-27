@@ -7,7 +7,7 @@ public class CounterExample {
 
     @SneakyThrows
     public static void main(String[] args) {
-        Counter counter = new Counter();
+        Counter counter = new ReentrantLockCounter();
 
         Thread t1 = new Thread(new Incrementer(counter, 100), "t1");
         Thread t2 = new Thread(new Incrementer(counter, 100), "t2");

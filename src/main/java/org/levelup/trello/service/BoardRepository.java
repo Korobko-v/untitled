@@ -5,4 +5,5 @@ import org.levelup.trello.model.User;
 
 public interface BoardRepository {
     Board createBoard(String name, boolean favourite, Integer userId);
+    Board findBoardByName(String login);
 }
