@@ -8,6 +8,7 @@ import org.levelup.trello.model.User;
 import org.levelup.trello.service.BoardColumnRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 public class HibernateBoardColumnRepository extends AbstractHibernateRepository implements BoardColumnRepository {
     public HibernateBoardColumnRepository(SessionFactory factory) {
@@ -45,6 +46,16 @@ public class HibernateBoardColumnRepository extends AbstractHibernateRepository 
             session.delete(column);
             return column;
         });
+    }
+
+    @Override
+    public BoardColumn findColumnByName(String name) {
+        try (Session session = factory.openSession()) {
+            List<BoardColumn> columns = session.createQuery("from BoardColumn where name = :name", BoardColumn.class)
+                    .setParameter("name", name)
+                    .getResultList();
+            return  columns.isEmpty() ? null: columns.get(0);
+        }
     }
 
     public BoardColumn getColumnById(Integer id) {
